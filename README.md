@@ -65,3 +65,9 @@ You can discuss ideas, ask questions, or share your experience in the Discussion
 Thanks to every contributor who joined this magical journey!
 
 Your first PR might be small - but it’s a big step into the open-source world. 🌟
+
+
+## 🌟 Our Wizards
+
+<!-- CONTRIBUTORS START -->
+<!-- CONTRIBUTORS END -->

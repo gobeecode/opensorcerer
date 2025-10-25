@@ -1,0 +1,45 @@
+name: Update Contributors Grid
+
+# Schedule: run daily at midnight
+on:
+  schedule:
+    - cron: "0 0 * * *"  # UTC midnight
+  workflow_dispatch:      # allow manual trigger
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Contributors Grid
+        run: |
+          GRID_FILE="contributors_grid.md"
+          echo "## 🌟 Contributors\n" > $GRID_FILE
+          echo "<table><tr>" >> $GRID_FILE
+
+          # Extract GitHub URLs from CONTRIBUTORS.md
+          grep -oP '(?<=\()\Khttps://github.com/[^)]+(?=\))' CONTRIBUTORS.md | while read url; do
+            username=$(basename $url)
+            echo "<td align=\"center\">" >> $GRID_FILE
+            echo "  <a href=\"$url\">" >> $GRID_FILE
+            echo "    <img src=\"$url.png?size=100\" width=\"100;\" alt=\"$username\"/><br/>" >> $GRID_FILE
+            echo "    <sub><b>$username</b></sub>" >> $GRID_FILE
+            echo "  </a>" >> $GRID_FILE
+            echo "</td>" >> $GRID_FILE
+          done
+
+          echo "</tr></table>" >> $GRID_FILE
+
+          # Insert into README.md between special markers
+          sed -i '/<!-- CONTRIBUTORS START -->/,/<!-- CONTRIBUTORS END -->/c\<!-- CONTRIBUTORS START -->\n'"$(cat $GRID_FILE)"'\n<!-- CONTRIBUTORS END -->' README.md
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add README.md
+          git commit -m "Update contributors grid" || echo "No changes to commit"
+          git push
