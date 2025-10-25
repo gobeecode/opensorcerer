@@ -19,24 +19,27 @@ jobs:
           echo "<table><tr>" > $GRID_FILE
           COUNT=0
           MAX_PER_ROW=6
+
           # Read GitHub URLs from CONTRIBUTORS.md and generate grid
           grep -oP '\(https://github.com/[^)]+\)' CONTRIBUTORS.md | tr -d '()' | while read url; do
-            username=$(basename $url)
-            cat >> $GRID_FILE <<EOF
-            <td align="center">
-              <a href="$url">
-                <img src="$url.png?size=100" width="100;" alt="$username"/><br/>
-                <sub><b>$username</b></sub>
-              </a>
-            </td>
-            EOF
+            username=$(basename "$url")
+
+            echo "  <td align=\"center\">" >> $GRID_FILE
+            echo "    <a href=\"$url\">" >> $GRID_FILE
+            echo "      <img src=\"$url.png?size=100\" width=\"100;\" alt=\"$username\"/><br/>" >> $GRID_FILE
+            echo "      <sub><b>$username</b></sub>" >> $GRID_FILE
+            echo "    </a>" >> $GRID_FILE
+            echo "  </td>" >> $GRID_FILE
+
             COUNT=$((COUNT+1))
             if [ $COUNT -ge $MAX_PER_ROW ]; then
               echo "</tr><tr>" >> $GRID_FILE
               COUNT=0
             fi
           done
+
           echo "</tr></table>" >> $GRID_FILE
+
           # Replace between markers in README.md safely
           awk '
             BEGIN {inside=0}
