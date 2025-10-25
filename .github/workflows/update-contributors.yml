@@ -27,12 +27,13 @@ jobs:
           grep -oP '\(https://github.com/[^)]+\)' CONTRIBUTORS.md | tr -d '()' | while read url; do
             username=$(basename "$url")
 
-            echo "  <td align=\"center\" style=\"padding:6px; background:transparent; border:0;\">" >> $GRID_FILE
-            echo "    <a href=\"$url\" style=\"text-decoration:none; color:#e5dcff; display:block;\">" >> $GRID_FILE
-            echo "      <img src=\"$url.png?size=96\" width=\"96\" height=\"96\" alt=\"$username\" style=\"display:block; margin:0 auto 10px; border-radius:50%;\">" >> $GRID_FILE
-            echo "      <div style=\"font-size:14px; color:#f0eaff;\"><strong>$username</strong></div>" >> $GRID_FILE
-            echo "    </a>" >> $GRID_FILE
-            echo "  </td>" >> $GRID_FILE
+            echo "<td align=\"center\" width=\"125\">" >> $GRID_FILE
+            echo "  <a href=\"$url\">" >> $GRID_FILE
+            echo "    <img src=\"$url.png?size=96\" width=\"96\" height=\"96\" alt=\"$username\"/><br/>" >> $GRID_FILE
+            echo "    <sub><b>$username</b></sub>" >> $GRID_FILE
+            echo "  </a>" >> $GRID_FILE
+            echo "</td>" >> $GRID_FILE
+
 
             COUNT=$((COUNT+1))
             if [ $COUNT -ge $MAX_PER_ROW ]; then
