@@ -71,8 +71,8 @@ Thanks to every contributor who joined this magical journey!
 Your first PR might be small - but it’s a big step into the open-source world. 🌟
 
 
-## 🌟 Our Wizards
-*This list will be updated once a day. Once your PR is merged to main, please wait until UTC midnight for your profile to be diplayed here!*
+## 🌟 The Wizards
+*The contributors list below will be updated once a day. Once your PR is merged to main, please wait until UTC midnight for your profile to appear here!*
 
 <!-- CONTRIBUTORS START -->
 <table><tr>
