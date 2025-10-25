@@ -68,14 +68,20 @@ Your first PR might be small - but it’s a big step into the open-source world.
 
 
 ## 🌟 Our Wizards
+*This list will be updated once a day. Once your PR is merged to main, please wait until UTC midnight for your profile to be diplayed here!*
 
 <!-- CONTRIBUTORS START -->
 <table><tr>
-  <td align="center">
-    <a href="https://github.com/gobeecode">
-      <img src="https://github.com/gobeecode.png?size=100" width="100;" alt="gobeecode"/><br/>
-      <sub><b>gobeecode</b></sub>
+<td align="center" style="padding:6px; background:transparent;  border:0;">
+    <a href="https://github.com/gobeecode" style="text-decoration:none; color:#e5dcff; display:block;">
+      <img src="https://github.com/gobeecode.png?size=96"
+           width="96" height="96" alt="gobeecode"
+           style="display:block; margin:0 auto 10px; border-radius:50%;">
+      <div style="font-size:14px; color:#f0eaff;">
+        <strong>gobeecode</strong>
+      </div>
     </a>
-  </td>
+</td>
+
 </tr></table>
 <!-- CONTRIBUTORS END -->
