@@ -2,7 +2,7 @@ name: Update Contributors Grid
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # runs daily at midnight UTC
+    - cron: "0 0 * * *"  # daily at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -16,43 +16,34 @@ jobs:
       - name: Generate Contributors Grid
         run: |
           GRID_FILE="contributors_grid.md"
-          echo "<table>" > $GRID_FILE
-          echo "<tr>" >> $GRID_FILE
-
+          echo "<table><tr>" > $GRID_FILE
           COUNT=0
           MAX_PER_ROW=6
-
-          # Extract GitHub URLs and generate table cells
-          grep -oP '(?<=\()\Khttps://github.com/[^)]+(?=\))' CONTRIBUTORS.md | while read url; do
+          # Read GitHub URLs from CONTRIBUTORS.md and generate grid
+          grep -oP '\(https://github.com/[^)]+\)' CONTRIBUTORS.md | tr -d '()' | while read url; do
             username=$(basename $url)
-
             cat >> $GRID_FILE <<EOF
             <td align="center">
-            <a href="$url">
-            <img src="$url.png?size=100" width="100;" alt="$username"/><br/>
-            <sub><b>$username</b></sub>
-            </a>
+              <a href="$url">
+                <img src="$url.png?size=100" width="100;" alt="$username"/><br/>
+                <sub><b>$username</b></sub>
+              </a>
             </td>
             EOF
-
             COUNT=$((COUNT+1))
             if [ $COUNT -ge $MAX_PER_ROW ]; then
               echo "</tr><tr>" >> $GRID_FILE
               COUNT=0
             fi
           done
-
-          echo "</tr>" >> $GRID_FILE
-          echo "</table>" >> $GRID_FILE
-
-          # Replace grid in README.md safely
+          echo "</tr></table>" >> $GRID_FILE
+          # Replace between markers in README.md safely
           awk '
             BEGIN {inside=0}
             /<!-- CONTRIBUTORS START -->/ {print; system("cat contributors_grid.md"); inside=1; next}
             /<!-- CONTRIBUTORS END -->/ {inside=0}
             !inside {print}
           ' README.md > README.tmp && mv README.tmp README.md
-
       - name: Commit and Push changes
         run: |
           git config --local user.name "GitHub Action"
