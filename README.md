@@ -36,13 +36,17 @@
    ```bash
    git checkout -b my-first-contribution
    ```
-4. Make your changes. Add your name, fix a typo, or improve the docs — every contribution counts!
-5. **Push** the changes
+4. Make your changes that you think is relevant and would help the project. The key here is to help you understand the contribution flow. For example, any of these below can be valid contributions:
+   - Adding your name to `CONTRIBUTORS.md`, 
+   - Fixing a typo
+   - Improving the docs
+   - and so on...
+6. **Push** the changes
     ```bash
     git commit -m "Added my name to contributors list"
     git push origin my-first-contribution
     ```
-6. **Create a Pull Request** on GitHub 🎉
+7. **Create a Pull Request** on GitHub 🎉
 
 ## 🌍 Contributing
 
