@@ -82,5 +82,11 @@ Your first PR might be small - but it’s a big step into the open-source world.
     <sub><b>gobeecode</b></sub>
   </a>
 </td>
+<td align="center" width="125">
+  <a href="https://github.com/hemanth-ed">
+    <img src="https://github.com/hemanth-ed.png?size=96" width="96" height="96" alt="hemanth-ed"/><br/>
+    <sub><b>hemanth-ed</b></sub>
+  </a>
+</td>
 </tr></table>
 <!-- CONTRIBUTORS END -->
