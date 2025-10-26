@@ -20,9 +20,17 @@ jobs:
         run: |
           GRID_FILE="contributors_grid.md"
           echo "<table><tr>" > $GRID_FILE
-          COUNT=0
-          MAX_PER_ROW=6
+          
+          echo "<td align=\"center\" width=\"125\">" >> $GRID_FILE
+          echo "  <a href=\"https://github.com/gobeecode\">" >> $GRID_FILE
+          echo "    <img src=\"https://github.com/gobeecode.png?size=96\" width=\"96\" height=\"96\" alt=\"gobeecode\"/><br/>" >> $GRID_FILE
+          echo "    <sub><b>gobeecode</b></sub>" >> $GRID_FILE
+          echo "  </a>" >> $GRID_FILE
+          echo "</td>" >> $GRID_FILE
 
+          COUNT=1
+          MAX_PER_ROW=6
+          
           # Read GitHub URLs from CONTRIBUTORS.md and generate grid
           grep -oP '\(https://github.com/[^)]+\)' CONTRIBUTORS.md | tr -d '()' | while read url; do
             username=$(basename "$url")
